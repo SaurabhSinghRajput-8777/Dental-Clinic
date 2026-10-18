@@ -30,6 +30,7 @@
 
   --font-serif: 'Albra', var(--font-serif), 'Cormorant Garamond', 'Times New Roman', serif;
   --font-cursive: var(--font-cursive), 'Playfair Display', 'Cormorant Garamond', Georgia, cursive;
+  --font-brand: var(--font-brand), 'Cinzel', 'Albra', serif;
   --font-sans: 'Allrounder Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-bold: var(--font-roboto), 'Roboto', 'Allrounder Grotesk', sans-serif;
   
