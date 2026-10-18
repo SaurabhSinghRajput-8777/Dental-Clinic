@@ -1411,49 +1411,279 @@
   color: var(--color-smokey-light);
 }
 
-/* Responsive */
-@media (max-width: 960px) {
-  .desktopNav {
+/* Comprehensive Mobile & Tablet Responsive Optimisations (PC view completely untouched) */
+@media (max-width: 1024px) {
+  .ritualsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header {
+    padding: 12px 18px;
+  }
+
+  .navLeft {
     display: none;
   }
-  .menuTrigger {
-    display: flex;
+
+  .navCenter {
+    justify-content: flex-start;
   }
+
+  .brandTitleText {
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+  }
+
+  .toothIcon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .headerBookBtn {
+    padding: 6px 16px;
+    font-size: 0.88rem;
+  }
+
+  .heroCardFrame {
+    height: 70vh;
+    min-height: 480px;
+    padding: 40px 24px;
+    border-radius: 20px;
+  }
+
+  .heroTitle {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    margin-bottom: 20px;
+  }
+
   .salvusContainer {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
+
   .footerGrid {
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 32px;
   }
+
+  .footerTopBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footerCursiveLine {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
   .modalBody {
     grid-template-columns: 1fr;
+    padding: 24px;
   }
+
+  .modalImageWrap {
+    aspect-ratio: 16/9;
+    max-height: 220px;
+  }
+
   .formRow {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 600px) {
-  .heroSection {
-    padding: 30px 20px;
-    height: 80vh;
+@media (max-width: 640px) {
+  .header {
+    padding: 10px 14px;
   }
-  .phonePill span {
-    display: none;
+
+  .brandTitleText {
+    font-size: 1.15rem;
+    letter-spacing: 0.06em;
+    gap: 8px;
   }
+
+  .toothIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .phoneCircleBtn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .headerBookBtn {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+  }
+
+  .heroOuterWrapper {
+    padding: 12px 12px 16px;
+  }
+
+  .heroCardFrame {
+    height: auto;
+    min-height: 460px;
+    padding: 32px 18px;
+    border-radius: 18px;
+  }
+
+  .heroTitle {
+    font-size: 1.85rem;
+    line-height: 1.2;
+    margin-bottom: 18px;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .heroPeachPillBtn,
+  .heroHollowPillBtn {
+    width: 100%;
+    text-align: center;
+    padding: 11px 20px;
+    font-size: 0.92rem;
+  }
+
+  .textBreakSection {
+    padding: 36px 16px;
+  }
+
+  .textBreakLead {
+    font-size: 1.3rem;
+  }
+
+  .ritualsSection {
+    padding: 36px 16px;
+  }
+
+  .ritualsGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .ritualsHeader {
+    text-align: left;
+    margin-bottom: 24px;
+  }
+
+  .ritualsExploreBar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .doctorsSection {
+    padding: 36px 0;
+  }
+
+  .doctorsHeader {
+    padding: 0 16px 14px;
+  }
+
+  .doctorEditorialCard {
+    padding: 24px 16px;
+  }
+
+  .doctorImageWrap {
+    max-width: 100%;
+    height: 280px;
+  }
+
+  .approachSection {
+    padding: 36px 14px;
+  }
+
+  .approachCard {
+    padding: 32px 18px;
+    border-radius: 24px;
+  }
+
+  .approachColumns {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+
+  .salvusSection {
+    padding: 36px 16px;
+  }
+
+  .gallerySection {
+    padding: 36px 16px;
+  }
+
+  .galleryGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .testimonialsSection {
+    padding: 36px 16px;
+  }
+
+  .testimonialQuote {
+    font-size: 1.25rem;
+  }
+
+  .faqSection {
+    padding: 36px 16px;
+  }
+
+  .faqItem {
+    padding: 16px 18px;
+  }
+
+  .faqQuestion h3 {
+    font-size: 1.05rem;
+  }
+
+  .bookingCardSection {
+    padding: 36px 14px;
+  }
+
+  .bookingCardContainer {
+    padding: 28px 16px;
+    border-radius: 24px;
+  }
+
+  .bookingCardTitle {
+    font-size: 1.75rem;
+  }
+
+  .formSubmitRow {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .formSubmitRow button,
+  .formSubmitRow a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer {
+    padding: 36px 16px 24px;
+  }
+
   .footerGrid {
     grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 36px;
   }
+
   .footerSubBar {
     flex-direction: column;
     gap: 14px;
     align-items: flex-start;
   }
-  .approachCard {
-    padding: 36px 24px;
-  }
-  .bookingCardContainer {
-    padding: 36px 20px;
-  }
 }
+
