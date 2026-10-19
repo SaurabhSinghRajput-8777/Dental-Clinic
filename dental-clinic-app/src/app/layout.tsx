@@ -12,8 +12,6 @@ const serifFont = Cormorant_Garamond({
 const cursiveFont = Playfair_Display({
   variable: "--font-cursive",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["italic", "normal"],
   display: "swap",
 });
 

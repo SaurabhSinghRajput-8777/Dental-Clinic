@@ -296,6 +296,105 @@ export default function HomePage() {
               Book an appointment
             </a>
           </div>
+
+          {/* Mobile Menu Hamburger Button */}
+          <button
+            type="button"
+            className={styles.mobileMenuToggle}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <span className={`${styles.hamburgerBar} ${mobileMenuOpen ? styles.hamburgerBarOpen1 : ""}`} />
+            <span className={`${styles.hamburgerBar} ${mobileMenuOpen ? styles.hamburgerBarOpen2 : ""}`} />
+            <span className={`${styles.hamburgerBar} ${mobileMenuOpen ? styles.hamburgerBarOpen3 : ""}`} />
+          </button>
+        </div>
+
+        {/* Mobile Slide-down Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div 
+            className={styles.mobileNavBackdrop} 
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+        <div className={`${styles.mobileNavDrawer} ${mobileMenuOpen ? styles.mobileNavDrawerOpen : ""}`}>
+          <div className={styles.mobileNavLinks}>
+            <Link 
+              href="#services" 
+              className={styles.mobileNavLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Treatments & Procedures</span>
+              <span className={styles.mobileNavArrow}>→</span>
+            </Link>
+            <Link 
+              href="#doctors" 
+              className={styles.mobileNavLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Our Doctors</span>
+              <span className={styles.mobileNavArrow}>→</span>
+            </Link>
+            <Link 
+              href="#process" 
+              className={styles.mobileNavLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Patient Journey</span>
+              <span className={styles.mobileNavArrow}>→</span>
+            </Link>
+            <Link 
+              href="#gallery" 
+              className={styles.mobileNavLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Clinic Gallery</span>
+              <span className={styles.mobileNavArrow}>→</span>
+            </Link>
+            <Link 
+              href="#faqs" 
+              className={styles.mobileNavLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>FAQs</span>
+              <span className={styles.mobileNavArrow}>→</span>
+            </Link>
+            <Link 
+              href="#appointment" 
+              className={styles.mobileNavLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Request Appointment</span>
+              <span className={styles.mobileNavArrow}>→</span>
+            </Link>
+            <Link 
+              href="#contact" 
+              className={styles.mobileNavLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Contact & Hours</span>
+              <span className={styles.mobileNavArrow}>→</span>
+            </Link>
+          </div>
+
+          <div className={styles.mobileNavFooter}>
+            <div className={styles.mobileNavPhoneInfo}>
+              <span className={styles.mobileNavPhoneLabel}>Emergency & Inquiries:</span>
+              <a href="tel:+918851032523" className={styles.mobileNavPhoneNumber}>+91 8851032523</a>
+            </div>
+            <a 
+              href="https://wa.me/918851032523?text=Hello%20Trisha%20Dental,%20I%20would%20like%20to%20book%20an%20appointment" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.mobileNavWhatsAppBtn}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Chat on WhatsApp</span>
+              <span>↗</span>
+            </a>
+          </div>
         </div>
       </header>
 
@@ -423,7 +522,8 @@ export default function HomePage() {
                 </div>
                 <div className={styles.doctorMetaWrap}>
                   <h3 className={styles.doctorCardName}>{doc.name}</h3>
-                  <p className={styles.doctorCardSubtitle}>{doc.title} • {doc.experience}</p>
+                  <p className={styles.doctorCardSubtitle}>{doc.title}</p>
+                  <p className={styles.doctorCardQual}>{doc.qualification} • {doc.experience}</p>
                   <p className={styles.doctorCardDesc}>{doc.scope}</p>
                   <div className={styles.doctorCardAction}>
                     <a 
@@ -883,6 +983,39 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+
+      {/* Mobile Floating Bottom Action Bar */}
+      <div className={styles.mobileBottomBar}>
+        <a 
+          href="tel:+918851032523" 
+          className={styles.mobileBottomCallBtn}
+          aria-label="Call Clinic Now"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>Call Now</span>
+        </a>
+        <a 
+          href="https://wa.me/918851032523?text=Hello%20Trisha%20Dental,%20I%20would%20like%20to%20book%20an%20appointment" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={styles.mobileBottomWhatsAppBtn}
+          aria-label="Chat on WhatsApp"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.074-2.029-.475-1.579-.652-2.578-2.273-2.656-2.378-.079-.105-.634-.842-.634-1.608 0-.767.4-1.144.543-1.301.143-.157.311-.196.416-.196.105 0 .209.001.301.006.096.005.226-.037.352.268.131.319.444 1.082.483 1.161.039.079.066.171.013.276-.052.105-.078.171-.157.262-.078.092-.165.205-.235.276-.08.081-.162.17-.07.327.092.157.408.673.874 1.089.6.535 1.106.7 1.263.78.157.079.248.066.34-.04.092-.105.393-.458.498-.616.105-.157.209-.131.353-.079.144.053.916.432 1.073.511.157.079.262.118.301.184.04.066.04.38-.104.785z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+        <a 
+          href="#appointment" 
+          className={styles.mobileBottomBookBtn}
+          aria-label="Book Appointment"
+        >
+          <span>Book Slot</span>
+        </a>
+      </div>
     </div>
   );
 }

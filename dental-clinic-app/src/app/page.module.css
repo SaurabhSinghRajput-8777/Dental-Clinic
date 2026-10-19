@@ -148,6 +148,23 @@
   color: var(--color-pearl);
 }
 
+/* Mobile-only elements hidden on PC / Desktop */
+.mobileMenuToggle {
+  display: none;
+}
+
+.mobileNavBackdrop {
+  display: none;
+}
+
+.mobileNavDrawer {
+  display: none;
+}
+
+.mobileBottomBar {
+  display: none;
+}
+
 /* Hero Section with inset rounded frame */
 .heroOuterWrapper {
   width: 100%;
@@ -607,9 +624,18 @@
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-gum);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.doctorCardQual {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-smokey-light);
+  margin-bottom: 6px;
+  line-height: 1.35;
 }
 
 .doctorCardDesc {
@@ -1412,16 +1438,31 @@
 }
 
 /* Comprehensive Mobile & Tablet Responsive Optimisations (PC view completely untouched) */
+/* ==========================================================================
+   Comprehensive Mobile & Tablet Responsive Optimisations
+   (PC View >= 1025px remains 100% pixel-perfect and untouched)
+   ========================================================================== */
+
+/* Tablet & Smaller Screens (<= 1024px) */
 @media (max-width: 1024px) {
   .ritualsGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 18px;
   }
 }
 
+/* Tablet & Mobile Screens (<= 900px) */
 @media (max-width: 900px) {
   .header {
     padding: 12px 18px;
+  }
+
+  .navContainer {
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
   }
 
   .navLeft {
@@ -1429,12 +1470,17 @@
   }
 
   .navCenter {
-    justify-content: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
   }
 
   .brandTitleText {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     letter-spacing: 0.08em;
+    justify-content: center;
   }
 
   .toothIcon {
@@ -1442,9 +1488,180 @@
     height: 22px;
   }
 
-  .headerBookBtn {
-    padding: 6px 16px;
-    font-size: 0.88rem;
+  .navRight {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0;
+    flex: initial;
+  }
+
+  .mobileMenuToggle {
+    order: -1;
+  }
+
+  .mobileMenuToggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-smokey);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .mobileMenuToggle:hover {
+    background-color: rgba(15, 23, 42, 0.06);
+  }
+
+  .hamburgerBar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: var(--color-smokey);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .hamburgerBarOpen1 {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburgerBarOpen2 {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .hamburgerBarOpen3 {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Slide-down Mobile Menu Drawer */
+  .mobileNavBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    top: 64px;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 95;
+    animation: fadeInBackdrop 0.2s ease forwards;
+  }
+
+  @keyframes fadeInBackdrop {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .mobileNavDrawer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(248, 250, 252, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1.5px solid var(--color-smokey-border);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+    padding: 16px 20px 24px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 98;
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  }
+
+  .mobileNavDrawerOpen {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobileNavLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+
+  .mobileNavLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 14px;
+    border-radius: 12px;
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--color-smokey);
+    transition: background 0.15s ease, color 0.15s ease;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+  }
+
+  .mobileNavLink:hover,
+  .mobileNavLink:active {
+    background-color: rgba(2, 132, 199, 0.08);
+    color: var(--color-gum);
+  }
+
+  .mobileNavArrow {
+    font-size: 1.15rem;
+    color: var(--color-gum);
+  }
+
+  .mobileNavFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-smokey-border);
+  }
+
+  .mobileNavPhoneInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding: 0 4px;
+  }
+
+  .mobileNavPhoneLabel {
+    color: var(--color-smokey-light);
+  }
+
+  .mobileNavPhoneNumber {
+    font-weight: 700;
+    color: var(--color-gum-dark);
+  }
+
+  .mobileNavWhatsAppBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 9999px;
+    background-color: var(--color-gum);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+
+  .mobileNavWhatsAppBtn:hover {
+    background-color: var(--color-gum-dark);
   }
 
   .heroCardFrame {
@@ -1494,20 +1711,57 @@
   }
 }
 
+/* Mobile Screens (<= 640px) */
 @media (max-width: 640px) {
+  /* Reserve space at bottom so sticky action bar never covers footer or buttons */
+  .pageWrapper {
+    padding-bottom: 72px;
+  }
+
   .header {
     padding: 10px 14px;
+    position: sticky;
+    top: 0;
+  }
+
+  .navContainer {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .navLeft {
+    display: none;
+  }
+
+  .navCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
   }
 
   .brandTitleText {
-    font-size: 1.15rem;
-    letter-spacing: 0.06em;
-    gap: 8px;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    gap: 6px;
+    justify-content: center;
   }
 
   .toothIcon {
     width: 18px;
     height: 18px;
+  }
+
+  .navRight {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0;
+    flex: initial;
   }
 
   .phoneCircleBtn {
@@ -1516,24 +1770,34 @@
   }
 
   .headerBookBtn {
-    padding: 5px 12px;
-    font-size: 0.8rem;
+    display: none; /* Replaced by prominent floating bottom bar on mobile */
   }
 
+  .mobileMenuToggle {
+    width: 38px;
+    height: 38px;
+    order: -1; /* Placed cleanly on the left column */
+  }
+
+  .mobileNavBackdrop {
+    top: 58px;
+  }
+
+  /* Hero Section */
   .heroOuterWrapper {
-    padding: 12px 12px 16px;
+    padding: 10px 10px 14px;
   }
 
   .heroCardFrame {
     height: auto;
-    min-height: 460px;
-    padding: 32px 18px;
+    min-height: 440px;
+    padding: 30px 18px;
     border-radius: 18px;
   }
 
   .heroTitle {
-    font-size: 1.85rem;
-    line-height: 1.2;
+    font-size: 1.8rem;
+    line-height: 1.22;
     margin-bottom: 18px;
   }
 
@@ -1548,20 +1812,57 @@
   .heroHollowPillBtn {
     width: 100%;
     text-align: center;
-    padding: 11px 20px;
-    font-size: 0.92rem;
+    padding: 12px 20px;
+    font-size: 0.94rem;
   }
 
+  /* Highlights Ticker */
+  .logosSection {
+    padding: 20px 0;
+  }
+
+  .tickerPill {
+    padding: 0 24px;
+    gap: 10px;
+  }
+
+  .tickerText {
+    font-size: 0.88rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Text Break Banner */
   .textBreakSection {
     padding: 36px 16px;
   }
 
-  .textBreakLead {
-    font-size: 1.3rem;
+  .textBreakSubhead {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
   }
 
+  .textBreakStatement {
+    font-size: 1.25rem;
+    line-height: 1.45;
+  }
+
+  /* Treatments & Procedures */
   .ritualsSection {
-    padding: 36px 16px;
+    padding: 36px 14px;
+  }
+
+  .sectionHeader {
+    text-align: left;
+    margin-bottom: 22px;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.9rem;
   }
 
   .ritualsGrid {
@@ -1569,24 +1870,60 @@
     gap: 14px;
   }
 
-  .ritualsHeader {
-    text-align: left;
-    margin-bottom: 24px;
+  .ritualCard {
+    padding: 12px;
+    border-radius: 16px;
   }
 
-  .ritualsExploreBar {
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
+  .ritualCard :global(.aspect-curved) {
+    max-height: 170px;
+    aspect-ratio: 16/9;
+  }
+
+  .ritualTitle {
+    font-size: 1.12rem;
+  }
+
+  .ritualDesc {
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  .ritualFooter button {
+    font-size: 0.84rem !important;
+    padding: 9px 16px !important;
+    min-height: 42px;
+  }
+
+  .ritualsActionRow {
+    margin-top: 24px;
+  }
+
+  .ritualsActionRow a {
+    width: 100%;
     text-align: center;
+    padding: 11px 18px;
+    font-size: 0.88rem;
   }
 
+  /* Our Doctors Section */
   .doctorsSection {
     padding: 36px 0;
   }
 
   .doctorsHeader {
     padding: 0 16px 14px;
+    text-align: left;
+  }
+
+  .doctorsMainTitle {
+    font-size: 1.85rem;
+  }
+
+  .doctorsColumns {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .doctorEditorialCard {
@@ -1595,89 +1932,311 @@
 
   .doctorImageWrap {
     max-width: 100%;
-    height: 280px;
+    height: 270px;
+    border-radius: 16px;
   }
 
+  .doctorCardName {
+    font-size: 1.35rem;
+  }
+
+  .doctorCardSubtitle {
+    font-size: 0.82rem;
+  }
+
+  .doctorCardDesc {
+    font-size: 0.86rem;
+    max-width: 100%;
+    -webkit-line-clamp: 3;
+  }
+
+  .doctorBookBtn {
+    width: 100%;
+    padding: 9px 20px;
+    font-size: 0.88rem;
+  }
+
+  .doctorsBottomNav {
+    padding: 12px 16px 0;
+    gap: 10px;
+  }
+
+  .doctorsExplorePill {
+    font-size: 0.76rem;
+    padding: 6px 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Patient Journey */
   .approachSection {
-    padding: 36px 14px;
+    padding: 32px 12px;
   }
 
   .approachCard {
-    padding: 32px 18px;
-    border-radius: 24px;
+    padding: 28px 16px;
+    border-radius: 20px;
+  }
+
+  .approachHeaderBlock {
+    text-align: left;
+    margin-bottom: 24px;
+  }
+
+  .approachHeaderBlock h2 {
+    font-size: 1.8rem !important;
+    margin: 8px 0 16px !important;
   }
 
   .approachColumns {
     grid-template-columns: 1fr;
-    gap: 24px;
-    margin-bottom: 30px;
+    gap: 20px;
+    margin-bottom: 24px;
   }
 
+  .approachCol {
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .approachCol:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .approachColTitle {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .approachColText {
+    font-size: 0.88rem;
+  }
+
+  .approachButtonWrapper a {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 0.88rem;
+  }
+
+  /* Why Choose Us (Salvus) */
   .salvusSection {
-    padding: 36px 16px;
+    padding: 32px 16px;
   }
 
+  .salvusContainer {
+    gap: 24px;
+  }
+
+  .salvusTitle {
+    font-size: 1.8rem;
+    margin: 8px 0 14px;
+  }
+
+  .salvusBody {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+
+  .salvusBenefits {
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .salvusTextCol a {
+    width: 100%;
+    text-align: center;
+    padding: 12px 18px;
+  }
+
+  /* Gallery Section */
   .gallerySection {
-    padding: 36px 16px;
+    padding: 32px 14px;
   }
 
   .galleryGrid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
+  /* Testimonials */
   .testimonialsSection {
     padding: 36px 16px;
   }
 
   .testimonialQuote {
-    font-size: 1.25rem;
+    font-size: 1.22rem;
+    line-height: 1.45;
+    margin-bottom: 16px;
   }
 
+  .testimonialAuthor {
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+  }
+
+  .reviewTabGroup {
+    gap: 8px;
+  }
+
+  .reviewTabBtn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  /* FAQs */
   .faqSection {
-    padding: 36px 16px;
+    padding: 32px 14px;
   }
 
   .faqItem {
-    padding: 16px 18px;
+    padding: 16px;
+    border-radius: 14px;
   }
 
   .faqQuestion h3 {
-    font-size: 1.05rem;
+    font-size: 1rem;
+    line-height: 1.35;
   }
 
+  .faqChevron {
+    font-size: 1.3rem;
+  }
+
+  .faqAnswer p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  /* Appointment Booking */
   .bookingCardSection {
-    padding: 36px 14px;
+    padding: 32px 12px;
   }
 
   .bookingCardContainer {
-    padding: 28px 16px;
-    border-radius: 24px;
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+
+  .bookingCardHeader {
+    text-align: left;
+    margin-bottom: 24px;
   }
 
   .bookingCardTitle {
-    font-size: 1.75rem;
+    font-size: 1.7rem;
+    margin: 6px 0 10px;
+  }
+
+  .bookingCardSub {
+    font-size: 0.88rem;
+  }
+
+  .appointmentForm {
+    gap: 16px;
+  }
+
+  .formGroup input,
+  .formGroup select {
+    padding: 12px 14px;
+    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+    border-radius: 10px;
   }
 
   .formSubmitRow {
     flex-direction: column;
     width: 100%;
+    gap: 10px;
+    margin-top: 6px;
   }
 
   .formSubmitRow button,
   .formSubmitRow a {
     width: 100%;
     text-align: center;
+    padding: 12px 16px !important;
+    font-size: 0.92rem;
   }
 
+  /* Modal Dialog on Mobile */
+  .modalBackdrop {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modalContent {
+    border-radius: 20px 20px 0 0;
+    max-height: 88vh;
+    padding: 0;
+  }
+
+  .modalCloseBtn {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .modalBody {
+    padding: 20px 16px 28px;
+    gap: 18px;
+  }
+
+  .modalTitle {
+    font-size: 1.5rem;
+  }
+
+  .modalDesc {
+    font-size: 0.88rem;
+  }
+
+  .modalInclusions h4 {
+    font-size: 1rem;
+  }
+
+  .modalInclusions li {
+    font-size: 0.84rem;
+  }
+
+  /* Footer */
   .footer {
-    padding: 36px 16px 24px;
+    padding: 36px 16px 20px;
+  }
+
+  .footerTopBanner {
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+  }
+
+  .footerBigHeading {
+    font-size: 1.75rem;
+  }
+
+  .backToTopPill {
+    padding: 7px 18px;
+    font-size: 0.8rem;
   }
 
   .footerGrid {
     grid-template-columns: 1fr;
-    gap: 28px;
-    margin-bottom: 36px;
+    gap: 26px;
+    margin-bottom: 30px;
+  }
+
+  .footerBrandDesc {
+    max-width: 100%;
+  }
+
+  .footerCol h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .footerCol li a,
+  .footerCol p,
+  .hoursBlock {
+    font-size: 0.86rem;
   }
 
   .footerSubBar {
@@ -1685,5 +2244,89 @@
     gap: 14px;
     align-items: flex-start;
   }
+
+  .socialLinks {
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 0.78rem;
+  }
+
+  .copyright {
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  /* Floating Bottom Quick Action Bar */
+  .mobileBottomBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    gap: 6px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(248, 250, 252, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--color-smokey-border);
+    padding: 8px 10px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.1);
+    z-index: 999;
+  }
+
+  .mobileBottomCallBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px;
+    border-radius: 12px;
+    background: var(--color-pearl);
+    border: 1.2px solid var(--color-smokey);
+    color: var(--color-smokey);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .mobileBottomWhatsAppBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px;
+    border-radius: 12px;
+    background: #25d366;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
+    transition: all 0.2s;
+  }
+
+  .mobileBottomBookBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 8px;
+    border-radius: 12px;
+    background: var(--color-gum);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+    transition: all 0.2s;
+  }
+
+  .mobileBottomCallBtn:active,
+  .mobileBottomWhatsAppBtn:active,
+  .mobileBottomBookBtn:active {
+    transform: scale(0.97);
+  }
 }
+
 
